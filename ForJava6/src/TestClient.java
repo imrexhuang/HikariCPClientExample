@@ -7,10 +7,12 @@ public class TestClient {
 
 	public static void main(String[] args) {
 		ResultSet resultSet = null;
+		Connection con = null;
+		Statement statement = null;
 		
         try{
-        	Connection con = HikariCPDataSource.getConnection(); 
-        	Statement statement = con.createStatement();
+        	con = HikariCPDataSource.getConnection(); 
+            statement = con.createStatement();
         	
         	String selectSql = "SELECT TOP 10 * from [Person].[Person]";
         	
@@ -22,6 +24,21 @@ public class TestClient {
         }
         catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+        	
+            try{
+                if(statement!=null)
+                	statement.close();
+             }catch(SQLException se2){
+             }
+            
+             try{
+                if(con!=null)
+                	con.close();
+             }catch(SQLException se){
+                se.printStackTrace();
+             }       
+             
         }		
 
 	}
