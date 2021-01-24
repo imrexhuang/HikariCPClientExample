@@ -1,0 +1,8 @@
+HikariCP
+https://github.com/brettwooldridge/HikariCP#configuration-knobs-baby
+
+HikariCP Maven:
+https://search.maven.org/search?q=com.zaxxer.hikaricp
+
+jTDS 
+http://jtds.sourceforge.net
