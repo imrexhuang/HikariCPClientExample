@@ -8,6 +8,7 @@ public class TestClient {
 	public static void main(String[] args) {
 		ResultSet resultSet = null;
 		
+		//Java 7以上，try-with-resource寫法，closable物件發生exception或正常執行完成都會自動呼叫close
         try (Connection con = HikariCPDataSource.getConnection(); Statement statement = con.createStatement();) {
         	String selectSql = "SELECT TOP 10 * from [Person].[Person]";
         	
@@ -19,7 +20,13 @@ public class TestClient {
         }
         catch (SQLException e) {
             e.printStackTrace();
-        }		
+        }finally {
+        	try {
+				HikariCPDataSource.closeConnection(); //也要把HikariDataSource的關閉，才會立刻釋放和資料庫的連線
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 
 	}
 

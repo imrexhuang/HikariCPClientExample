@@ -30,6 +30,10 @@ public class HikariCPDataSource {
     public static Connection getConnection() throws SQLException {
         return ds.getConnection();     
     }
+	
+    public static void closeConnection() throws SQLException {
+        ds.close();     
+    }    
     
     private HikariCPDataSource(){}
 }

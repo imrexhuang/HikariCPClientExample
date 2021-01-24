@@ -31,6 +31,9 @@ public class HikariCPDataSource {
         return ds.getConnection();
     }
      
+    public static void closeConnection() throws SQLException {
+        ds.close();     
+    }  
     
     private HikariCPDataSource(){}
     

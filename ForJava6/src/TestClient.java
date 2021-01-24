@@ -5,7 +5,13 @@ import java.sql.Statement;
 
 public class TestClient {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) {  
+		HikariConnTest();
+		infiniteLoop();//模擬系統繼續做其他事
+	}
+	
+	private static void HikariConnTest()
+	{
 		ResultSet resultSet = null;
 		Connection con = null;
 		Statement statement = null;
@@ -37,10 +43,26 @@ public class TestClient {
                 	con.close();
              }catch(SQLException se){
                 se.printStackTrace();
-             }       
+             }
+
+         	try {
+ 				HikariCPDataSource.closeConnection();//也要把HikariDataSource的關閉，才會立刻釋放和資料庫的連線
+ 			} catch (SQLException e) {
+ 				e.printStackTrace();
+ 			}
              
         }		
-
+	}
+	
+	
+	private static void infiniteLoop()
+	{
+		int i=1;
+        while(true)
+        {
+        	System.out.println("無窮迴圈 Infinite Loop :"+i);
+        	i++;        
+        }
 	}
 
 }
