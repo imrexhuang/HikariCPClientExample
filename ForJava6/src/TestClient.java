@@ -36,6 +36,7 @@ public class TestClient {
                 if(statement!=null)
                 	statement.close();
              }catch(SQLException se2){
+				 se2.printStackTrace();
              }
             
              try{
