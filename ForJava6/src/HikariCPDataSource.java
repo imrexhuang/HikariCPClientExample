@@ -32,7 +32,10 @@ public class HikariCPDataSource {
     }
 	
     public static void closeConnection() throws SQLException {
-        ds.close();     
+        ds.close();
+		// shutdown(): Deprecated. This method has been deprecated, please use close() instead
+		// https://www.javadoc.io/doc/com.zaxxer/HikariCP/2.6.3/com/zaxxer/hikari/HikariDataSource.html#shutdown--
+		// 新版已經移除shutdown() https://www.javadoc.io/doc/com.zaxxer/HikariCP/3.4.5/com/zaxxer/hikari/HikariDataSource.html#close--
     }    
     
     private HikariCPDataSource(){}
